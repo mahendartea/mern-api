@@ -14,5 +14,14 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahendartea/mern-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mahendartea/mern-api/issues"
+  },
+  "homepage": "https://github.com/mahendartea/mern-api#readme"
 }
