@@ -1,11 +1,14 @@
-exports.createProduct = (req,res,netxt) => {
+exports.createProduct = (req,res,next) => {
+   // const name = req.body.name;
+   // const price = req.body.price;
+   console.log(req.body)
    res.json(
       {
          message: 'Create Product Success!!!',
          data: {
             id:1,
-            name: 'Sari Nutri',
-            price: 5000
+            "name": "mahendar DP",
+            "price": 5000
          }
       }
    );

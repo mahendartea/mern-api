@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
 const port = 4000;
-
 const productRoutes = require('./src/routes/products');
+const bodyParser = require('body-parser');
 
 // akses Home
-app.use('/', (req,res,next)=>{
-   res.send("hai")
-});
+// app.use('/', (req,res,next)=>{
+//    res.send(`
+//    <a href="http://localhost:4000/v1/costumer/products">Get Products</a>
+//    `)
+// });
 
 // akses product
 app.use('/v1/costumer', productRoutes);
@@ -25,7 +27,10 @@ app.use((req,res,next)=>{
    // Jenis Header
    res.setHeader('Akses-Control-Allow-Headers','Content-Type, Authorization');
    next();
-})
+});
+
+// body parser
+app.use(bodyParser.json()) //type json
 
 app.listen(port, ()=> {
    console.log(`Example app listening at http://localhost:${port}`);

@@ -4,5 +4,10 @@ GET http://localhost:4000/
 GET http://localhost:4000/v1/costumer/products
 
 ###
-POST http://localhost:4000/v1/costumer/product
+POST http://localhost:4000/v1/costumer/product 
+content-type: application/json
+
+{
+   "nama": "Mahendar Dwi Payana",
+}
 
