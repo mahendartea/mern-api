@@ -1,7 +1,7 @@
 exports.createProduct = (req,res,netxt) => {
    res.json(
       {
-         message: 'Create Product Success',
+         message: 'Create Product Success!!!',
          data: {
             id:1,
             name: 'Sari Nutri',
@@ -15,7 +15,7 @@ exports.createProduct = (req,res,netxt) => {
 exports.getAllProducts = (req,res,next) => {
    res.json(
       {
-         message: 'Get All Products',
+         message: 'Get All Products success!',
          data:[
             {
                id:1,
