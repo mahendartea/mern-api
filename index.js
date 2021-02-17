@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
 const port = 4000;
-const productRoutes = require('./src/routes/products');
 const bodyParser = require('body-parser');
+// 
+const productRoutes = require('./src/routes/products');
+const authRoutes = require('./src/routes/auth');
 
 // akses Home
 // app.use('/', (req,res,next)=>{
@@ -12,12 +14,8 @@ const bodyParser = require('body-parser');
 // });
 
 // body parser
-app.use(bodyParser.json()) //type json.
-app.use(bodyParser.urlencoded({ extended: false }))
-
-
-// akses product
-app.use('/v1/costumer', productRoutes);
+app.use(bodyParser.json()); //type json.
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //untuk di akses oleh link lain
 app.use((req,res,next)=>{
@@ -34,6 +32,11 @@ app.use((req,res,next)=>{
    next();
 });
 
+
+// akses product Endpoint API
+app.use('/v1/costumer', productRoutes);
+app.use('/v1/auth',authRoutes);
+// app.use('/v1/auth',authRoutes);
 
 app.listen(port, ()=> {
    console.log(`Example app listening at http://localhost:${port}`);
