@@ -11,6 +11,11 @@ const bodyParser = require('body-parser');
 //    `)
 // });
 
+// body parser
+app.use(bodyParser.json()) //type json.
+app.use(bodyParser.urlencoded({ extended: false }))
+
+
 // akses product
 app.use('/v1/costumer', productRoutes);
 
@@ -19,7 +24,7 @@ app.use((req,res,next)=>{
    // semua link, Aksess Cros Origin Policy
    res.setHeader('Akses-Control-Allow-Origin','*');
    // spesifik
-   // res.setHeader('Akses-Control-Allow-Origin','https://codepen.io');
+   res.setHeader('Akses-Control-Allow-Origin','https://codepen.io');
    
    // method akses diberikan
    res.setHeader('Akses-Control-Allow-Method','POST,GET,PUT,DELETE,PATCH,OPTION');
@@ -29,8 +34,6 @@ app.use((req,res,next)=>{
    next();
 });
 
-// body parser
-app.use(bodyParser.json()) //type json
 
 app.listen(port, ()=> {
    console.log(`Example app listening at http://localhost:${port}`);
