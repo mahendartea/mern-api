@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
-const port = 4000;
 const bodyParser = require('body-parser');
-// 
-const productRoutes = require('./src/routes/products');
-const authRoutes = require('./src/routes/auth');
 
+const authRoutes = require('./src/routes/auth');
+const blogRoutes = require('./src/routes/blog');
+
+const port = 4000;
 // akses Home
 // app.use('/', (req,res,next)=>{
 //    res.send(`
@@ -34,11 +34,20 @@ app.use((req,res,next)=>{
 
 
 // akses product Endpoint API
-app.use('/v1/costumer', productRoutes);
+// app.use('/v1/costumer', productRoutes);
 app.use('/v1/auth',authRoutes);
-// app.use('/v1/auth',authRoutes);
+app.use('/v1/blog',blogRoutes);
+
+// validation error 
+app.use((error,req,res,next)=>{
+   const status = error.errorStatus || 500;
+   const message = error.message;
+   const data = error.data;
+   
+   res.status(status).json({message: message, data: data});
+})
 
 app.listen(port, ()=> {
-   console.log(`Example app listening at http://localhost:${port}`);
+   console.log(`This app listening at http://localhost:${port}`);
 });
 
