@@ -19,6 +19,10 @@ router.post(
   blogController.createBlogPost
 );
 
+// get All data blog
 router.get("/posts", blogController.getAllBlogPost);
+
+// get data blog berdasar BlogId
+router.get("/post/:postId", blogController.getBlogPostById);
 
 module.exports = router;

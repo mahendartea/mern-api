@@ -51,3 +51,22 @@ exports.getAllBlogPost = (req, res, next) => {
       next(err);
     });
 };
+
+exports.getBlogPostById = (req, res, next) => {
+  const postId = req.params.postId;
+  BlogPost.findById(postId)
+    .then((result) => {
+      if (!result) {
+        const error = new Error("Data tidak ditenmukan");
+        error.status(404);
+        throw error;
+      }
+      res.status(200).json({
+        message: "Data blogpost berhasil dipanggil",
+        data: result,
+      });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};

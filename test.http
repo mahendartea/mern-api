@@ -37,4 +37,7 @@ GET http://localhost:4000/v1/blog/posts HTTP/1.1
 ###
 GET http://localhost:4000/images/1615268317687-laravel-226015.png 
 
+###
+
+GET http://localhost:4000/v1/blog/post/604709dda068f66f7d5db871 HTTP/1.1
 
