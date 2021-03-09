@@ -15,9 +15,10 @@ router.post(
   [
     body("title").isLength({ min: 5 }).withMessage("Minimal 5 Huruf"),
     body("body").isLength({ min: 5 }).withMessage(" Minimal 5 Huruf"),
-    body("image"),
   ],
   blogController.createBlogPost
 );
+
+router.get("/posts", blogController.getAllBlogPost);
 
 module.exports = router;

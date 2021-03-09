@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 
 const app = express();
+
+const path = require("path");
 // require file route
 const authRoutes = require("./src/routes/auth");
 const blogRoutes = require("./src/routes/blog");
@@ -41,6 +43,9 @@ const filterImage = (req, file, cb) => {
 app.use(
   multer({ storage: fileStorage, fileFilter: filterImage }).single("image")
 );
+
+// akses image folder
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 // body parser
 app.use(bodyParser.json()); //type json.
