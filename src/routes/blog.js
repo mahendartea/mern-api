@@ -21,8 +21,15 @@ router.post(
 
 // get All data blog
 router.get("/posts", blogController.getAllBlogPost);
-
 // get data blog berdasar BlogId
 router.get("/post/:postId", blogController.getBlogPostById);
+router.put(
+  "/post/:postId",
+  [
+    body("title").isLength({ min: 5 }).withMessage("Minimal 5 Huruf"),
+    body("body").isLength({ min: 5 }).withMessage(" Minimal 5 Huruf"),
+  ],
+  blogController.updateBlogPost
+);
 
 module.exports = router;

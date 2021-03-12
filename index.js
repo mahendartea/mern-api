@@ -89,6 +89,7 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(
     // "mongodb+srv://mahendar:haguselatan@mern-project-latihan.l3ynb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    // "mongodb+srv://mahendar:haguselatan@mern-project-latihan.l3ynb.mongodb.net/blog?retryWrites=true&w=majority"
     "mongodb+srv://mahendar:haguselatan@mern-project-latihan.l3ynb.mongodb.net/blog?retryWrites=true&w=majority"
   )
   .then(() => {
