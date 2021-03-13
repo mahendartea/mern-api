@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 
 const app = express();
-
+// path untuk access lokasi folder dan file
 const path = require("path");
 // require file route
 const authRoutes = require("./src/routes/auth");
