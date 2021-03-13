@@ -9,7 +9,10 @@ const blogController = require("../controllers/blog");
 
 // [POST] : /v1/blog/post
 
-// plus validator form
+// get All data blog
+router.get("/posts", blogController.getAllBlogPost);
+
+// Create Data post
 router.post(
   "/post",
   [
@@ -19,10 +22,9 @@ router.post(
   blogController.createBlogPost
 );
 
-// get All data blog
-router.get("/posts", blogController.getAllBlogPost);
 // get data blog berdasar BlogId
 router.get("/post/:postId", blogController.getBlogPostById);
+// update data
 router.put(
   "/post/:postId",
   [
@@ -31,7 +33,7 @@ router.put(
   ],
   blogController.updateBlogPost
 );
-
+// delete data
 router.delete("/post/:postId", blogController.deleteBlogPost);
 
 module.exports = router;

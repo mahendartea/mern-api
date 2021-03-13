@@ -2,7 +2,9 @@ const { validationResult } = require("express-validator");
 const path = require("path");
 const fs = require("fs");
 const BlogPost = require("../models/blog");
+const multer = require("multer");
 
+// function create post
 exports.createBlogPost = (req, res, next) => {
   // cek validasi form post
   const errors = validationResult(req);
@@ -41,12 +43,41 @@ exports.createBlogPost = (req, res, next) => {
     });
 };
 
+// function get All data
+// exports.getAllBlogPost = (req, res, next) => {
+//   BlogPost.find()
+//     .then((result) => {
+//       res.status(201).json({
+//         message: "Data BlogPost berhasil di panggil!",
+//         data: result,
+//       });
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+// };
+
+// function get All data with pagination
 exports.getAllBlogPost = (req, res, next) => {
+  const currentPage = req.query.page || 1;
+  const perPage = req.query.perPage || 5;
+  let totalItems;
+
   BlogPost.find()
+    .countDocuments()
+    .then((count) => {
+      totalItems = count;
+      return BlogPost.find()
+        .skip((parseInt(currentPage) - 1) * parseInt(perPage))
+        .limit(parseInt(perPage));
+    })
     .then((result) => {
       res.status(201).json({
         message: "Data BlogPost berhasil di panggil!",
         data: result,
+        total_data: totalItems,
+        per_page: parseInt(perPage),
+        current_page: parseInt(currentPage),
       });
     })
     .catch((err) => {
@@ -54,6 +85,7 @@ exports.getAllBlogPost = (req, res, next) => {
     });
 };
 
+// function get data berdasarkan postID
 exports.getBlogPostById = (req, res, next) => {
   const postId = req.params.postId;
   BlogPost.findById(postId)
@@ -73,6 +105,7 @@ exports.getBlogPostById = (req, res, next) => {
     });
 };
 
+// function update post
 exports.updateBlogPost = (req, res, next) => {
   const errors = validationResult(req);
 
@@ -119,6 +152,7 @@ exports.updateBlogPost = (req, res, next) => {
     });
 };
 
+// function delete post
 exports.deleteBlogPost = (req, res, next) => {
   const postID = req.params.postId;
 
