@@ -88,9 +88,14 @@ app.use((error, req, res, next) => {
 // koneksi ke mongodb
 mongoose
   .connect(
-    // "mongodb+srv://mahendar:haguselatan@mern-project-latihan.l3ynb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
     // "mongodb+srv://mahendar:haguselatan@mern-project-latihan.l3ynb.mongodb.net/blog?retryWrites=true&w=majority"
-    "mongodb+srv://mahendar:haguselatan@mern-project-latihan.l3ynb.mongodb.net/blog?retryWrites=true&w=majority"
+    "mongodb+srv://mahendar:haguselatan@mern-project-latihan.l3ynb.mongodb.net/blog?retryWrites=true&w=majority&ssl=true",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+    }
   )
   .then(() => {
     app.listen(port, () => {
